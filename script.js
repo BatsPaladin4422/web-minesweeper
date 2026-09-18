@@ -190,8 +190,8 @@ let lastTouchY = 0
 
 document.addEventListener("touchstart", (event) => {
     clickedAt = Date.now()
-    lastTouchX = mouseX;
-    lastTouchY = mouseY;
+    lastTouchX = event.touches[0].clientX;
+    lastTouchY = event.touches[0].clientY;
 })
 
 
