@@ -111,6 +111,11 @@ function createBoard() {
                     flag()
                 } else open()
             })
+            tile.ontouchend = (() => {
+                if(Date.now() - clickedAt >= 300) {
+                    flag()
+                } else open()
+            })
             tile.onauxclick = flag
         }
         board.push(boardRow)
@@ -205,6 +210,30 @@ document.addEventListener("contextmenu", (event) => {
 
 document.addEventListener("mousedown", (event) => {
     clickedAt = Date.now()
+})
+
+document.addEventListener("touchstart", (event) => {
+    clickedAt = Date.now()
+})
+
+document.addEventListener("touchmove", (event) => {
+    mouseX = event.clientX
+    mouseY = event.clientY
+
+    let xMovement = event.movementX
+    let yMovement = event.movementY
+
+    if(event.buttons >= 1) {
+        for(tile of tiles) {
+            let x = tile.style.left
+            let y = tile.style.top
+            x = +(x.substring(0, x.length - 2))
+            y = +(y.substring(0, y.length - 2))
+
+            tile.style.left = x + xMovement
+            tile.style.top = y + yMovement
+        }
+    }
 })
 
 Iwidth.oninput = (() => {
