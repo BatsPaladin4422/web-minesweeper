@@ -234,6 +234,7 @@ document.addEventListener("mousedown", (event) => {
 })
 
 document.addEventListener("touchdown", (event) => {
+    window.location.reload()
     clickedAt = Date.now()
 })
 
