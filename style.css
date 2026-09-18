@@ -1,0 +1,69 @@
+body {
+    z-index: 0;
+    background-color: #1f1f1f;
+    color: #cdd6f4;
+    font-family: "JetBrains Mono";
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: center;
+    justify-content: center;
+}
+
+.tile {
+    z-index: 0;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.dark {
+    z-index: 0;
+    color: ffffff;
+    height: 30px;
+    width: 30px;
+    border-width: 0px;
+    border-color: 1f9f1f;
+    background-color: #111b11;
+}
+
+.light {
+    z-index: 0;
+    height: 30px;
+    width: 30px;
+    border-width: 0px;
+    background-color: #1e2e1e;
+}
+
+.open_light {
+    z-index: 0;
+    border-color: #895634;
+    background-color: #895634;
+}
+
+.open_dark {
+    z-index: 0;
+    border-color: #693614;
+    background-color: #693614;
+}
+
+input {
+    background-color: #1e1e2e;
+    color: white;
+    border: none;
+    font-family: "JetBrains Mono";
+}
+
+#timer {
+    position: absolute;
+    left: 1vmin;
+    top: 1vmin;
+    z-index: 1;
+}
+
+#restart {
+    position: absolute;
+    left: 1vmin;
+    top: calc(1vmin + 1.25rem);
+    z-index: 1;
+}
