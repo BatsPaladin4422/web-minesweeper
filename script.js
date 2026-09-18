@@ -181,6 +181,7 @@ document.addEventListener("wheel", (event) => {
 })
 
 document.addEventListener("mousemove", (event) => {
+    window.location.reload()
     mouseX = event.clientX
     mouseY = event.clientY
 
@@ -206,10 +207,6 @@ document.addEventListener("contextmenu", (event) => {
 
 document.addEventListener("mousedown", (event) => {
     clickedAt = Date.now()
-})
-
-document.addEventListener("select", (event) => {
-    event.preventDefault()
 })
 
 Iwidth.oninput = (() => {
