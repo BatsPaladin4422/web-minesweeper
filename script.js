@@ -183,6 +183,7 @@ document.addEventListener("wheel", (event) => {
 let lastTouchX = 0
 let lastTouchY = 0
 document.addEventListener("touchmove", (event) => {
+    test.innerText = JSON.stringify(touches)
     mouseX = event.touches[0].clientX
     mouseY = event.touches[0].clientY
 
@@ -199,7 +200,6 @@ document.addEventListener("touchmove", (event) => {
         tile.style.top = y + yMovement
     }
     
-
     lastTouchX = mouseX;
     lastTouchY = mouseY;
 })
@@ -229,6 +229,10 @@ document.addEventListener("contextmenu", (event) => {
 })
 
 document.addEventListener("mousedown", (event) => {
+    clickedAt = Date.now()
+})
+
+document.addEventListener("touchdown", (event) => {
     clickedAt = Date.now()
 })
 
