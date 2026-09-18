@@ -180,8 +180,31 @@ document.addEventListener("wheel", (event) => {
     }
 })
 
+let lastTouchX = 0
+let lastTouchY = 0
+document.addEventListener("touchmove", (event) => {
+    mouseX = event.touches[0].clientX
+    mouseY = event.touches[0].clientY
+
+    let xMovement = lastTouchX - mouseX
+    let yMovement = lastTouchY - mouseY
+
+    for(tile of tiles) {
+        let x = tile.style.left
+        let y = tile.style.top
+        x = +(x.substring(0, x.length - 2))
+        y = +(y.substring(0, y.length - 2))
+
+        tile.style.left = x + xMovement
+        tile.style.top = y + yMovement
+    }
+    
+
+    lastTouchX = mouseX;
+    lastTouchY = mouseY;
+})
+
 document.addEventListener("mousemove", (event) => {
-    window.location.reload()
     mouseX = event.clientX
     mouseY = event.clientY
 
