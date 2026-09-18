@@ -182,7 +182,7 @@ document.addEventListener("wheel", (event) => {
 
 let lastTouchX = 0
 let lastTouchY = 0
-
+test.innerText = "Hello"
 document.addEventListener("touchstart", (event) => {
     clickedAt = Date.now()
     lastTouchX = event.touches[0].clientX;
@@ -192,6 +192,10 @@ document.addEventListener("touchstart", (event) => {
 
 document.addEventListener("touchcancel", (event) => {
     test.innerText = "Cancel"
+})
+
+document.addEventListener("mousedown", (event) => {
+    test.innerText = "Mousedown"
 })
 
 document.addEventListener("touchend", (event) => {
