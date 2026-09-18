@@ -39,6 +39,7 @@ function createBoard() {
             tile.style.fontSize = tileSide * 0.6
             tile.style.zIndex = 0
             tile.classList.add((x + y) % 2 == 1 ? "dark" : "light")
+            tile.style.userSelect = "none"
             body.appendChild(tile)
             tiles.push(tile)
             const open = (() => {
