@@ -187,9 +187,15 @@ document.addEventListener("wheel", (event) => {
 
 let lastTouchX = 0
 let lastTouchY = 0
-document.addEventListener("touchdown", (event) => {
+
+document.addEventListener("touchstart", (event) => {
     clickedAt = Date.now()
-    window.location.reload()
+    lastTouchX = mouseX;
+    lastTouchY = mouseY;
+})
+
+
+document.addEventListener("touchend", (event) => {
     test.innerText = JSON.stringify(touches)
     mouseX = event.touches[0].clientX
     mouseY = event.touches[0].clientY
@@ -206,9 +212,6 @@ document.addEventListener("touchdown", (event) => {
         tile.style.left = x + xMovement
         tile.style.top = y + yMovement
     }
-    
-    lastTouchX = mouseX;
-    lastTouchY = mouseY;
 })
 
 document.addEventListener("mousemove", (event) => {
