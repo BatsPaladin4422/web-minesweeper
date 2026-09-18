@@ -112,11 +112,6 @@ function createBoard() {
                     flag()
                 } else open()
             })
-            tile.ontouchend = (() => {
-                if(Date.now() - clickedAt >= 300) {
-                    flag()
-                } else open()
-            })
             tile.onauxclick = flag
         }
         board.push(boardRow)
