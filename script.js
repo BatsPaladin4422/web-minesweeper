@@ -112,11 +112,6 @@ function createBoard() {
                     flag()
                 } else open()
             })
-            tile.ontouchend = (() => {
-                if(Date.now() - clickedAt >= 300) {
-                    flag()
-                } else open()
-            })
             tile.onauxclick = flag
         }
         board.push(boardRow)
@@ -192,11 +187,15 @@ document.addEventListener("touchstart", (event) => {
     clickedAt = Date.now()
     lastTouchX = event.touches[0].clientX;
     lastTouchY = event.touches[0].clientY;
+    test.innerText = "Start"
 })
 
+document.addEventListener("touchcancel", (event) => {
+    test.innerText = "Cancel"
+})
 
 document.addEventListener("touchend", (event) => {
-    test.innerText = JSON.stringify(touches)
+    test.innerText = "End"
     mouseX = event.touches[0].clientX
     mouseY = event.touches[0].clientY
 
