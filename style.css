@@ -20,18 +20,14 @@ body {
 
 .dark {
     z-index: 0;
-    color: ffffff;
-    height: 30px;
-    width: 30px;
+    color: #ffffff;
     border-width: 0px;
-    border-color: 1f9f1f;
+    border-color: #1f9f1f;
     background-color: #111b11;
 }
 
 .light {
     z-index: 0;
-    height: 30px;
-    width: 30px;
     border-width: 0px;
     background-color: #1e2e1e;
 }
@@ -69,9 +65,57 @@ input {
     z-index: 1;
 }
 
-#test {
-    position: absolute;
-    left: 1vmin;
-    top: calc(1vmin + 1.25rem);
+.square {
+    width: 70;
+    height: 70;
+    background-color: #3f3f3f;
+}
+
+.small {
+    width: 30;
+    height: 30;
+    background-color: #3f3f3f;
+}
+
+#modechanger {
     z-index: 1;
+    left: 1vmin;
+    top: calc(100vh - 1vmin - 70px);
+}
+
+#scaleup {
+    z-index: 1;
+    left: calc(2vmin + 70px);
+    top: calc(100vh - 1vmin - 70px);
+}
+
+#scaledown {
+    z-index: 1;
+    left: calc(3vmin + 140px);
+    top: calc(100vh - 1vmin - 70px);
+}
+
+
+#up {
+    z-index: 1;
+    left: calc(4vmin + 230px);
+    top: calc(100vh - 1vmin - 70px);
+}
+
+#down {
+    z-index: 1;
+    left: calc(4vmin + 230px);
+    top: calc(100vh - 1vmin - 30px);
+}
+
+#left {
+    z-index: 1;
+    left: calc(4vmin + 210px);
+    top: calc(100vh - 1vmin - 50px);
+}
+
+#right {
+    z-index: 1;
+    left: calc(4vmin + 250px);
+    top: calc(100vh - 1vmin - 50px);
 }

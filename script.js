@@ -16,12 +16,12 @@ let startingTime = undefined
 const board = []
 const tiles = []
 
-let mouseX = -1
-let mouseY = -1
+let mouseX = window.visualViewport.width / 2
+let mouseY = window.visualViewport.height / 2
 
 let minesAdded = false
 
-let clickedAt = undefined
+let clickMode = "open"
 
 function createBoard() {
     minesAdded = false
@@ -108,9 +108,8 @@ function createBoard() {
             })
             
             tile.onclick = (() => {
-                if(Date.now() - clickedAt >= 300) {
-                    flag()
-                } else open()
+                if(clickMode == "flag") flag()
+                else open()
             })
             tile.onauxclick = flag
         }
@@ -153,8 +152,7 @@ function addMines(clickY, clickX) {
     minesAdded = true
 }
 
-document.addEventListener("wheel", (event) => {
-    let scale = (event.deltaY < 0) ? 0.8 : 1.25
+function zoom(scale) {
     if(scale < 1 && currentZoom <= minZoom) return;
     currentZoom *= scale
 
@@ -178,24 +176,23 @@ document.addEventListener("wheel", (event) => {
         tile.style.height = h * scale
         tile.style.fontSize = f * scale
     }
-})
+}
 
-let lastTouchX = 0
-let lastTouchY = 0
-document.getElementById("test").innerText = "Hello"
-document.addEventListener("touchstart", (event) => {
-    clickedAt = Date.now()
-    lastTouchX = event.touches[0].clientX;
-    lastTouchY = event.touches[0].clientY;
-    document.getElementById("test").innerText = "Start"
-})
+function drag(dx, dy) {
+    for(tile of tiles) {
+        let x = tile.style.left
+        let y = tile.style.top
+        x = +(x.substring(0, x.length - 2))
+        y = +(y.substring(0, y.length - 2))
 
-document.addEventListener("touchcancel", (event) => {
-    document.getElementById("test").innerText = "Cancel"
-})
+        tile.style.left = x + dx
+        tile.style.top = y + dy
+    }
+}
 
-document.addEventListener("mousedown", (event) => {
-    document.getElementById("test").innerText = "Mousedown"
+document.addEventListener("wheel", (event) => {
+    let scale = (event.deltaY < 0) ? 0.8 : 1.25
+    zoom(scale)
 })
 
 document.addEventListener("touchend", (event) => {
@@ -224,25 +221,11 @@ document.addEventListener("mousemove", (event) => {
     let xMovement = event.movementX
     let yMovement = event.movementY
 
-    if(event.buttons >= 1) {
-        for(tile of tiles) {
-            let x = tile.style.left
-            let y = tile.style.top
-            x = +(x.substring(0, x.length - 2))
-            y = +(y.substring(0, y.length - 2))
-
-            tile.style.left = x + xMovement
-            tile.style.top = y + yMovement
-        }
-    }
+    if(event.buttons >= 1) drag(xMovement, yMovement)
 })
 
 document.addEventListener("contextmenu", (event) => {
     event.preventDefault()
-})
-
-document.addEventListener("mousedown", (event) => {
-    clickedAt = Date.now()
 })
 
 Iwidth.oninput = (() => {
@@ -274,6 +257,40 @@ start.onclick = (() => {
     startingTime = Date.now()
     isTiming = true
     createBoard()
+})
+
+modechanger.onclick = (() => {
+    if(clickMode == "flag") {
+        clickMode = "open"
+        modechanger.innerText = "X"
+    } else {
+        clickMode = "flag"
+        modechanger.innerText = "🚩"
+    }
+})
+
+scaleup.onclick = (() => {
+    zoom(1.25)
+})
+
+scaledown.onclick = (() => {
+    zoom(0.8)
+})
+
+up.onclick = (() => {
+    drag(0, 90)
+})
+
+down.onclick = (() => {
+    drag(0, -90)
+})
+
+left.onclick = (() => {
+    drag(90, 0)
+})
+
+right.onclick = (() => {
+    drag(-90, 0)
 })
 
 randomizer.onclick = (() => {
